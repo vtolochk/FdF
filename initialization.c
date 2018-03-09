@@ -12,34 +12,6 @@
 
 #include "includes/fdf.h"
 
-static void get_coords(t_fdf_data *data, int fd)
-{
-	int y;
-	int x;
-	char *line;
-	char **ptr;
-
-	y = 0;
-	x = 0;
-	while (get_next_line(fd, &line) > 0)
-	{
-		y++;
-		ptr = ft_strsplit(line, ' ');
-		while (ptr++)
-			x++;
-		free(line); // need to figure out how to use it before free
-		ft_free_tab((void **)ptr);
-	}
-	data->map = (t_fdf_point **)malloc(sizeof(t_fdf_point *) * (y + 1));
-	data->map[y + 1] = NULL;
-	y = 0;
-	while (data->map[y])
-	{
-		data->map[y] = (t_fdf_point *)malloc(sizeof(t_fdf_point) * (x + 1));
-		y++;
-	}
-}
-
 static int validate_fdf(int argc, char **argv)
 {
 	int fd;

@@ -13,6 +13,8 @@
 #ifndef FDF_H
 # define FDF_H
 
+#include <stdio.h>
+
 #include <mlx.h>
 #include <math.h>
 #include <fcntl.h>
@@ -34,9 +36,12 @@ typedef struct  s_fdf_data
 {
 	void *mlx_ptr;
 	void *win_ptr;
+	int     max_x;
+	int     max_y;
 	t_fdf_point **map;
 }               t_fdf_data;
 
 void init_fdf(t_fdf_data *data, int argc, char **argv);
+void get_coords(t_fdf_data *data, int fd);
 
 #endif
