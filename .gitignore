@@ -2,3 +2,6 @@ cmake-buid-debug
 CMake*
 .DS_Store*
 .idea*
+a.out
+libft.a
+*.gch
