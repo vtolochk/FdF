@@ -29,6 +29,22 @@ static int validate_fdf(int argc, char **argv)
 	return (fd);
 }
 
+static void get_center(t_fdf_data *data)
+{
+	if (data->max_x > 90 || data->max_y > 90)
+	{
+		multiply_map(data, 5);
+		data->center.x = (WIN_WIDTH/2 - (data->max_x * 5)/2);
+		data->center.y = (WIN_HEIGHT/2 - (data->max_y * 5)/2);
+	}
+	else
+	{
+		multiply_map(data, 25);
+		data->center.x = (WIN_WIDTH/2 - (data->max_x * 25)/2);
+		data->center.y = (WIN_HEIGHT/2 - (data->max_y * 25)/2);
+	}
+}
+
 void    init_fdf(t_fdf_data *data, int argc, char **argv)
 {
 	int     fd;
@@ -48,5 +64,6 @@ void    init_fdf(t_fdf_data *data, int argc, char **argv)
 	}
 	data->mlx_ptr = mlx_ptr;
 	data->win_ptr = win_ptr;
+	get_center(data);
 	ft_strdel(&window_name);
 }

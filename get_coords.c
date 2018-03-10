@@ -12,7 +12,7 @@
 
 #include "includes/fdf.h"
 
-static char *get_line_and_size(int fd, int *x, int *y)
+static char *get_line_and_size(int fd, size_t *x, size_t *y)
 {
 	char    *line;
 	char    *temp;
@@ -70,8 +70,8 @@ static void get_z_coord(t_fdf_data *data, char *line)
 
 void get_coords(t_fdf_data *data, int fd)
 {
-	int y;
-	int x;
+	size_t y;
+	size_t x;
 	char   *big_line;
 
 	y = 0;
