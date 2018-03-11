@@ -33,15 +33,19 @@ static void get_center(t_fdf_data *data)
 {
 	if (data->max_x > 90 || data->max_y > 90)
 	{
-		multiply_map(data, 5);
+		multiply_map(data, data->map, 5);
+		multiply_map(data, data->map_cpy, 5);
+		data->map_size = 5;
 		data->center.x = (WIN_WIDTH/2 - (data->max_x * 5)/2);
 		data->center.y = (WIN_HEIGHT/2 - (data->max_y * 5)/2);
 	}
 	else
 	{
-		multiply_map(data, 25);
-		data->center.x = (WIN_WIDTH/2 - (data->max_x * 25)/2);
-		data->center.y = (WIN_HEIGHT/2 - (data->max_y * 25)/2);
+		multiply_map(data, data->map, 30);
+		multiply_map(data, data->map_cpy, 30);
+		data->map_size = 30;
+		data->center.x = (WIN_WIDTH/2 - (data->max_x * 30)/2);
+		data->center.y = (WIN_HEIGHT/2 - (data->max_y * 30)/2);
 	}
 }
 
@@ -64,6 +68,11 @@ void    init_fdf(t_fdf_data *data, int argc, char **argv)
 	}
 	data->mlx_ptr = mlx_ptr;
 	data->win_ptr = win_ptr;
+	data->z_height = 0;
+	data->map_size = 0;
+	data->x_degree = 0;
+	data->y_degree = 0;
+	data->z_degree = 0;
 	get_center(data);
 	ft_strdel(&window_name);
 }

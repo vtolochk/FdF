@@ -18,6 +18,8 @@ void put_pixel_on_img(int x, int y, t_fdf_data *data)
 
 	if (x >= WIN_WIDTH || y >= WIN_HEIGHT)
 		return ;
+	if (x < 0 || y < 0)
+		return ;
 	i = (x * 4) + (y * data->size_line);
 	data->img_map[i++] = data->color.blue;
 	data->img_map[i++] = data->color.green;

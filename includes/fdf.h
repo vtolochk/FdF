@@ -18,6 +18,7 @@
 #include <mlx.h>
 #include <math.h>
 #include <fcntl.h>
+#include <limits.h>
 #include "../Libft/includes/libft.h"
 
 # define ERROR 1
@@ -51,16 +52,22 @@ typedef struct  s_fdf_data
 	void    *win_ptr;
 	char    *img_map;
 	int     size_line;
+	int     x_degree;
+	int     y_degree;
+	int     z_degree;
+	int     map_size;
+	int     z_height;
 	size_t     max_x;
 	size_t     max_y;
 	t_fdf_center center;
 	t_fdf_color color;
 	t_fdf_point **map;
+	t_fdf_point **map_cpy;
 }               t_fdf_data;
 
 void init_fdf(t_fdf_data *data, int argc, char **argv);
 void get_coords(t_fdf_data *data, int fd);
 void put_pixel_on_img(int x, int y, t_fdf_data *data);
-void multiply_map(t_fdf_data *data, int value);
+void multiply_map(t_fdf_data *data, t_fdf_point **map, int value);
 
 #endif
