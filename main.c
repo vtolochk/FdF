@@ -17,7 +17,25 @@ int mouse_close(void)
 	exit(SUCCESS);
 }
 
-void multiply_map(t_fdf_data *data, t_fdf_point **map, int value)
+void divide_map(t_fdf_data *data, t_fdf_point **map, double value)
+{
+	int y = 0;
+	int x = 0;
+
+	while (y < data->max_y)
+	{
+		x = 0;
+		while (x < data->max_x)
+		{
+			map[y][x].y = map[y][x].y / value;
+			map[y][x].x = map[y][x].x / value;
+			x++;
+		}
+		y++;
+	}
+}
+
+void multiply_map(t_fdf_data *data, t_fdf_point **map, double value)
 {
 	int y = 0;
 	int x = 0;
@@ -188,6 +206,20 @@ int close_window(int key, t_fdf_data *data)
 		data->y_degree = 0;
 		data->x_degree = 0;
 		mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	}
+	if (key == 27) // -
+	{
+		divide_map(data, data->map, data->map_size);
+		divide_map(data, data->map_cpy, data->map_size);
+		multiply_map(data, data->map, data->map_size - 0.9);
+		multiply_map(data, data->map_cpy, data->map_size - 0.9);
+	}
+	if (key == 24) //+
+	{
+		divide_map(data, data->map, data->map_size);
+		divide_map(data, data->map_cpy, data->map_size);
+		multiply_map(data, data->map, data->map_size + 0.9);
+		multiply_map(data, data->map_cpy, data->map_size + 0.9);
 	}
 	rotate_map(data);
 	return (SUCCESS);

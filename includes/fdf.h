@@ -55,7 +55,7 @@ typedef struct  s_fdf_data
 	int     x_degree;
 	int     y_degree;
 	int     z_degree;
-	int     map_size;
+	double     map_size;
 	int     z_height;
 	size_t     max_x;
 	size_t     max_y;
@@ -68,6 +68,6 @@ typedef struct  s_fdf_data
 void init_fdf(t_fdf_data *data, int argc, char **argv);
 void get_coords(t_fdf_data *data, int fd);
 void put_pixel_on_img(int x, int y, t_fdf_data *data);
-void multiply_map(t_fdf_data *data, t_fdf_point **map, int value);
+void multiply_map(t_fdf_data *data, t_fdf_point **map, double value);
 
 #endif

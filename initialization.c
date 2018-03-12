@@ -33,17 +33,17 @@ static void get_center(t_fdf_data *data)
 {
 	if (data->max_x > 90 || data->max_y > 90)
 	{
-		multiply_map(data, data->map, 5);
-		multiply_map(data, data->map_cpy, 5);
-		data->map_size = 5;
+		multiply_map(data, data->map, 5.0);
+		multiply_map(data, data->map_cpy, 5.0);
+		data->map_size = 5.0;
 		data->center.x = (WIN_WIDTH/2 - (data->max_x * 5)/2);
 		data->center.y = (WIN_HEIGHT/2 - (data->max_y * 5)/2);
 	}
 	else
 	{
-		multiply_map(data, data->map, 30);
-		multiply_map(data, data->map_cpy, 30);
-		data->map_size = 30;
+		multiply_map(data, data->map, 30.0);
+		multiply_map(data, data->map_cpy, 30.0);
+		data->map_size = 30.0;
 		data->center.x = (WIN_WIDTH/2 - (data->max_x * 30)/2);
 		data->center.y = (WIN_HEIGHT/2 - (data->max_y * 30)/2);
 	}
