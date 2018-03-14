@@ -6,11 +6,11 @@
 /*   By: vtolochk <vtolochk@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 13:34:00 by vtolochk          #+#    #+#             */
-/*   Updated: 2018/03/09 13:34:00 by vtolochk         ###   ########.fr       */
+/*   Updated: 2018/03/13 19:28:52 by vtolochk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fdf.h"
+#include "fdf.h"
 
 static int validate_fdf(int argc, char **argv)
 {
@@ -61,18 +61,17 @@ void    init_fdf(t_fdf_data *data, int argc, char **argv)
 	window_name = ft_strjoin("FdF - ", argv[1]);
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, WIN_WIDTH, WIN_HEIGHT, window_name);
+	ft_strdel(&window_name);
 	if (!mlx_ptr || !win_ptr)
-	{
-		ft_strdel(&window_name);
 		exit (ERROR);
-	}
 	data->mlx_ptr = mlx_ptr;
 	data->win_ptr = win_ptr;
-	data->z_height = 0;
 	data->map_size = 0;
 	data->x_degree = 0;
 	data->y_degree = 0;
 	data->z_degree = 0;
+	data->color.green = 255;
+	data->color.blue = 20;
+	data->color.red = 100;
 	get_center(data);
-	ft_strdel(&window_name);
 }

@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img_functions.c                                    :+:      :+:    :+:   */
+/*   drew_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtolochk <vtolochk@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/10 15:08:00 by vtolochk          #+#    #+#             */
-/*   Updated: 2018/03/10 15:08:00 by vtolochk         ###   ########.fr       */
+/*   Created: 2018/03/14 13:57:00 by vtolochk          #+#    #+#             */
+/*   Updated: 2018/03/14 13:57:00 by vtolochk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fdf.h"
+#include "fdf.h"
 
-void put_pixel_on_img(int x, int y, t_fdf_data *data)
+void draw_line(int x0, int y0, int x1, int y1, t_fdf_data *data)
 {
-	int i;
 
-	if (x >= WIN_WIDTH || y >= WIN_HEIGHT)
-		return ;
-	if (x < 0 || y < 0)
-		return ;
-	i = (x * 4) + (y * data->size_line);
-	data->img_map[i++] = data->color.blue;
-	data->img_map[i++] = data->color.green;
-	data->img_map[i] = data->color.red;
+	int dx = abs(x1-x0), sx = x0<x1 ? 1 : -1;
+	int dy = abs(y1-y0), sy = y0<y1 ? 1 : -1;
+	int err = (dx>dy ? dx : -dy)/2, e2;
+
+	while (1)
+	{
+		put_pixel_on_img(x0, y0, data);
+		if (x0 == x1 && y0 == y1)
+			break;
+		e2 = err;
+		if (e2 >-dx)
+		{
+			err -= dy;
+			x0 += sx;
+		}
+		if (e2 < dy)
+		{
+			err += dx;
+			y0 += sy;
+		}
+	}
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_coords.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtolochk <vtolochk@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vtolochk <vtolochk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 16:45:00 by vtolochk          #+#    #+#             */
-/*   Updated: 2018/03/09 16:45:00 by vtolochk         ###   ########.fr       */
+/*   Updated: 2018/03/13 19:48:16 by vtolochk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fdf.h"
+#include "fdf.h"
 
 static char *get_line_and_size(int fd, size_t *x, size_t *y)
 {
@@ -44,10 +44,10 @@ static char *get_line_and_size(int fd, size_t *x, size_t *y)
 
 static void get_z_coord(t_fdf_data *data, char *line, t_fdf_point **map)
 {
-	int i;
-	int j;
-	char **lines;
-	char **numbers;
+	size_t	i;
+	size_t	j;
+	char	**lines;
+	char	**numbers;
 
 	i = 0;
 	lines = ft_strsplit(line, '\n');
