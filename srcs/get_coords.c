@@ -18,7 +18,9 @@ static char *get_line_and_size(int fd, size_t *x, size_t *y)
 	char    *temp;
 	char   *big_line;
 	char    **ptr;
+	size_t  valid;
 
+	valid = 0;
 	big_line = ft_strnew(0);
 	while (get_next_line(fd, &line) > 0)
 	{
@@ -26,6 +28,16 @@ static char *get_line_and_size(int fd, size_t *x, size_t *y)
 		ptr = ft_strsplit(line, ' ');
 		while (ptr[(*x)])
 			(*x)++;
+		if (*y == 1)
+			valid = *x;
+		if (valid != *x)
+		{
+			ft_free_tab((void **)ptr);
+			ft_strdel(&big_line);
+			ft_strdel(&line);
+			close(fd);
+			return (NULL);
+		}
 		temp = big_line;
 		big_line = ft_strjoin(big_line, "\n");
 		free(temp);
@@ -59,36 +71,43 @@ static void get_z_coord(t_fdf_data *data, char *line, t_fdf_point **map)
 		{
 			map[i][j].y = (double)i - data->max_y/2;
 			map[i][j].x = (double)j - data->max_x/2;
-			map[i][j].z = (double)ft_atoi(numbers[j]);
+			if (numbers)
+				map[i][j].z = (double)ft_atoi(numbers[j]);
 			j++;
 		}
+		ft_free_tab((void **)numbers);
 		i++;
 	}
 	ft_free_tab((void**)lines);
-	ft_free_tab((void **)numbers);
 }
 
 void get_coords(t_fdf_data *data, int fd)
 {
 	size_t y;
 	size_t x;
+	size_t i;
 	char   *big_line;
 
 	y = 0;
 	x = 0;
 	big_line = get_line_and_size(fd, &x, &y);
+	if (!big_line)
+	{
+		ft_printf("Not a valid file\n");
+		exit(ERROR);
+	}
 	data->max_y = y;
 	data->max_x = x;
 	data->map = (t_fdf_point **)malloc(sizeof(t_fdf_point *) * (y + 1));
 	data->map_cpy = (t_fdf_point **)malloc(sizeof(t_fdf_point *) * (y + 1));
-	data->map[y + 1] = NULL;
-	data->map_cpy[y + 1] = NULL;
-	y = 0;
-	while (data->map[y])
-		data->map[y++] = (t_fdf_point *)malloc(sizeof(t_fdf_point) * (x));
-	y = 0;
-	while (data->map[y])
-		data->map_cpy[y++] = (t_fdf_point *)malloc(sizeof(t_fdf_point) * (x));
+	data->map[y] = NULL;
+	data->map_cpy[y] = NULL;
+	i = 0;
+	while (i <= y)
+		data->map[i++] = (t_fdf_point *)malloc(sizeof(t_fdf_point) * (x));
+	i = 0;
+	while (i <= y)
+		data->map_cpy[i++] = (t_fdf_point *)malloc(sizeof(t_fdf_point) * (x));
 	get_z_coord(data, big_line, data->map);
 	get_z_coord(data, big_line, data->map_cpy);
 	ft_strdel(&big_line);

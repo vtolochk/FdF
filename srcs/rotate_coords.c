@@ -80,7 +80,6 @@ void change_z_height(t_fdf_data *data, double value)
 	size_t x;
 	size_t y;
 
-	x = 0;
 	y = 0;
 	while (y < data->max_y)
 	{

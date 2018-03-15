@@ -108,9 +108,9 @@ int read_event(int key, t_fdf_data *data)
 		change_degree(key, data);
 	if (key == 36 || key == 27 || key == 24)
 		clear_and_zoom(key, data);
-	if (key == 258)
-		change_z_height(data, 1.8);
 	if (key == 257)
+		change_z_height(data, 1.8);
+	if (key == 258)
 		change_z_height(data, 0.5);
 	if (key == 18 || key == 19 || key == 20 || key == 21 || key == 22 || key == 23)
 		change_color(key, data);

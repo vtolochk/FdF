@@ -35,13 +35,15 @@ void create_img(t_fdf_data *data, size_t x, size_t y)
 		while (x < data->max_x)
 		{
 			if (x + 1 < data->max_x)
-				draw_line(data->map[y][x].x + WIN_WIDTH/2, data->map[y][x].y + WIN_HEIGHT/2, data->map[y][x + 1].x  + WIN_WIDTH/2, data->map[y][x + 1].y + WIN_HEIGHT/2, data);
+				draw_line(data->map[y][x], data->map[y][x + 1], data, 0);
 			if (y + 1 < data->max_y)
-				draw_line(data->map[y][x].x + WIN_WIDTH/2, data->map[y][x].y + WIN_HEIGHT/2, data->map[y + 1][x].x  + WIN_WIDTH/2, data->map[y + 1][x].y + WIN_HEIGHT/2, data);
+				draw_line(data->map[y][x], data->map[y + 1][x], data, 0);
 			x++;
 		}
 		y++;
 	}
+	if (data->max_y == 1 && data->max_x == 1)
+		put_pixel_on_img(data->map[y][x].x + WIN_WIDTH/2, data->map[y][x].y + WIN_WIDTH/2, data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img_ptr, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, img_ptr);
 }

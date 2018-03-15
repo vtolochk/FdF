@@ -33,11 +33,11 @@ typedef struct s_fdf_point
 	double z;
 }              t_fdf_point;
 
-typedef struct s_fdf_center
+typedef struct s_fdf_coords
 {
-	size_t	x;
-	size_t  y;
-}               t_fdf_center;
+	int	x;
+	int y;
+}               t_fdf_coords;
 
 typedef struct s_fdf_color
 {
@@ -58,12 +58,13 @@ typedef struct  s_fdf_data
 	double     map_size;
 	size_t     max_x;
 	size_t     max_y;
-	t_fdf_center center;
+	t_fdf_coords center;
 	t_fdf_color color;
 	t_fdf_point **map;
 	t_fdf_point **map_cpy;
 }               t_fdf_data;
 
+void draw_line(t_fdf_point first_point, t_fdf_point second_point, t_fdf_data *data, int error);
 void init_fdf(t_fdf_data *data, int argc, char **argv);
 void get_coords(t_fdf_data *data, int fd);
 void put_pixel_on_img(int x, int y, t_fdf_data *data);
@@ -72,7 +73,6 @@ void rotate_x(t_fdf_data *data, t_fdf_point **map);
 void rotate_y(t_fdf_data *data, t_fdf_point **map);
 void rotate_z(t_fdf_data *data, t_fdf_point **map);
 void rotate_map(t_fdf_data *data);
-void draw_line(int x0, int y0, int x1, int y1, t_fdf_data *data);
 void divide_map(t_fdf_data *data, t_fdf_point **map, double value);
 void multiply_map(t_fdf_data *data, t_fdf_point **map, double value);
 void move_map_down(t_fdf_data *data, double value);

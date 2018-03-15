@@ -17,7 +17,7 @@ void drew_start_legend(t_fdf_data *data)
 	char *str;
 
 	str = "Press space to start";
-	mlx_string_put(data->mlx_ptr, data->win_ptr, WIN_WIDTH/2 - ft_strlen(str)*4, WIN_HEIGHT/2 - ft_strlen(str)*4, 0xFFFFFFF, str);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, WIN_WIDTH/2 - (ft_strlen(str) * 4), WIN_HEIGHT/2 - (ft_strlen(str) * 4), 0xFFFFFFF, str);
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 50, 40, 0xFFFFFF, "LEGEND:");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 50, 70, 0xFFFFFF, "Up:            'W'");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 50, 90, 0xFFFFFF, "Down:          'S'");

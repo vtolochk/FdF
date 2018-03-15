@@ -12,28 +12,65 @@
 
 #include "fdf.h"
 
-void draw_line(int x0, int y0, int x1, int y1, t_fdf_data *data)
+static void move_to_center(t_fdf_point *first_point, t_fdf_point *second_point)
 {
+	first_point->x = first_point->x + WIN_WIDTH/2;
+	first_point->y = first_point->y + WIN_HEIGHT/2;
+	second_point->x = second_point->x + WIN_WIDTH/2;
+	second_point->y = second_point->y + WIN_HEIGHT/2;
+}
 
-	int dx = abs(x1-x0), sx = x0<x1 ? 1 : -1;
-	int dy = abs(y1-y0), sy = y0<y1 ? 1 : -1;
-	int err = (dx>dy ? dx : -dy)/2, e2;
+static void get_length(t_fdf_coords *length, t_fdf_point first, t_fdf_point second)
+{
+	length->y = abs((int)second.y - (int)first.y);
+	length->x = abs((int)second.x - (int)first.x);
+}
 
+static void get_error(t_fdf_coords length, int *error)
+{
+	if (length.x > length.y)
+		*error = length.x/2;
+	else
+		*error = -length.y/2;
+}
+
+static void get_increment(t_fdf_point first, t_fdf_point second, t_fdf_coords *increment)
+{
+	if ((int)first.x < (int)second.x)
+		increment->x = 1;
+	else
+		increment->x = -1;
+	if ((int)first.y < (int)second.y)
+		increment->y = 1;
+	else
+		increment->y = -1;
+}
+
+void draw_line(t_fdf_point first_point, t_fdf_point second_point, t_fdf_data *data, int error)
+{
+	int save_error;
+	t_fdf_coords increment;
+	t_fdf_coords length;
+
+	move_to_center(&first_point, &second_point);
+	get_length(&length, first_point, second_point);
+	get_error(length, &error);
+	get_increment(first_point, second_point, &increment);
 	while (1)
 	{
-		put_pixel_on_img(x0, y0, data);
-		if (x0 == x1 && y0 == y1)
+		put_pixel_on_img((int)first_point.x, (int)first_point.y, data);
+		if ((int)first_point.x == (int)second_point.x && (int)first_point.y == (int)second_point.y)
 			break;
-		e2 = err;
-		if (e2 >-dx)
+		save_error = error;
+		if (save_error > -length.x)
 		{
-			err -= dy;
-			x0 += sx;
+			error = error - length.y;
+			first_point.x = (int)first_point.x + increment.x;
 		}
-		if (e2 < dy)
+		if (save_error < length.y)
 		{
-			err += dx;
-			y0 += sy;
+			error = error + length.x;
+			first_point.y = (int)first_point.y + increment.y;
 		}
 	}
 }
