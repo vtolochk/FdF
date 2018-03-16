@@ -6,13 +6,13 @@
 /*   By: vtolochk <vtolochk@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 13:55:00 by vtolochk          #+#    #+#             */
-/*   Updated: 2018/03/14 13:55:00 by vtolochk         ###   ########.fr       */
+/*   Updated: 2018/03/16 20:19:12 by vtolochk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void move_map_down(t_fdf_data *data, double value)
+void		move_map_down(t_fdf_data *data, double value)
 {
 	size_t x;
 	size_t y;
@@ -31,7 +31,7 @@ void move_map_down(t_fdf_data *data, double value)
 	}
 }
 
-void move_map_up(t_fdf_data *data, double value)
+void		move_map_up(t_fdf_data *data, double value)
 {
 	size_t x;
 	size_t y;
@@ -50,7 +50,7 @@ void move_map_up(t_fdf_data *data, double value)
 	}
 }
 
-void move_map_left(t_fdf_data *data, double value)
+void		move_map_left(t_fdf_data *data, double value)
 {
 	size_t x;
 	size_t y;
@@ -69,7 +69,7 @@ void move_map_left(t_fdf_data *data, double value)
 	}
 }
 
-void move_map_right(t_fdf_data *data, double value)
+void		move_map_right(t_fdf_data *data, double value)
 {
 	size_t x;
 	size_t y;

@@ -66,7 +66,7 @@ typedef struct  s_fdf_data
 
 void draw_line(t_fdf_point first_point, t_fdf_point second_point, t_fdf_data *data, int error);
 void init_fdf(t_fdf_data *data, int argc, char **argv);
-void get_coords(t_fdf_data *data, int fd);
+void get_coords(t_fdf_data *data, int fd, size_t y, size_t x);
 void put_pixel_on_img(int x, int y, t_fdf_data *data);
 void create_img(t_fdf_data *data, size_t x, size_t y);
 void rotate_x(t_fdf_data *data, t_fdf_point **map);

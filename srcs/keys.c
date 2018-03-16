@@ -6,13 +6,13 @@
 /*   By: vtolochk <vtolochk@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 14:11:00 by vtolochk          #+#    #+#             */
-/*   Updated: 2018/03/14 14:11:00 by vtolochk         ###   ########.fr       */
+/*   Updated: 2018/03/16 20:24:42 by vtolochk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void color_helper(int key, t_fdf_data *data)
+static void		color_helper(int key, t_fdf_data *data)
 {
 	if (key == 18)
 	{
@@ -40,7 +40,7 @@ static void color_helper(int key, t_fdf_data *data)
 	}
 }
 
-static void change_color(int key, t_fdf_data *data)
+static void		change_color(int key, t_fdf_data *data)
 {
 	if (key == 18 || key == 19 || key == 20 || key == 21)
 		color_helper(key, data);
@@ -58,13 +58,13 @@ static void change_color(int key, t_fdf_data *data)
 	}
 }
 
-static void clear_and_zoom(int key, t_fdf_data *data)
+static void		clear_and_zoom(int key, t_fdf_data *data)
 {
 	if (key == 36)
 	{
+		data->x_degree = -70;
+		data->y_degree = 15;
 		data->z_degree = 0;
-		data->y_degree = 0;
-		data->x_degree = 0;
 		mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	}
 	if (key == 27)
@@ -83,7 +83,7 @@ static void clear_and_zoom(int key, t_fdf_data *data)
 	}
 }
 
-static void change_degree(int key, t_fdf_data *data)
+static void		change_degree(int key, t_fdf_data *data)
 {
 	if (key == 125)
 		data->x_degree += 2;
@@ -99,29 +99,30 @@ static void change_degree(int key, t_fdf_data *data)
 		data->z_degree -= 2;
 }
 
-int read_event(int key, t_fdf_data *data)
+int				read_event(int key, t_fdf_data *data)
 {
 	if (key == 53)
 		exit(SUCCESS);
 	if (key == 125 || key == 126 || key == 124 ||
-	    key == 123 || key == 6 || key == 7)
+		key == 123 || key == 6 || key == 7)
 		change_degree(key, data);
 	if (key == 36 || key == 27 || key == 24)
 		clear_and_zoom(key, data);
 	if (key == 257)
-		change_z_height(data, 1.8);
+		change_z_height(data, 1.2);
 	if (key == 258)
 		change_z_height(data, 0.5);
-	if (key == 18 || key == 19 || key == 20 || key == 21 || key == 22 || key == 23)
+	if (key == 18 || key == 19 || key == 20 || key == 21 ||
+		key == 22 || key == 23)
 		change_color(key, data);
 	if (key == 2)
-		move_map_right(data, 5);
+		move_map_right(data, 4);
 	if (key == 0)
-		move_map_left(data, 5);
+		move_map_left(data, 4);
 	if (key == 13)
-		move_map_up(data, 5);
+		move_map_up(data, 4);
 	if (key == 1)
-		move_map_down(data, 5);
+		move_map_down(data, 4);
 	rotate_map(data);
 	return (SUCCESS);
 }

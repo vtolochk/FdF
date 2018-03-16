@@ -6,13 +6,13 @@
 /*   By: vtolochk <vtolochk@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 13:56:00 by vtolochk          #+#    #+#             */
-/*   Updated: 2018/03/14 13:56:00 by vtolochk         ###   ########.fr       */
+/*   Updated: 2018/03/16 20:29:37 by vtolochk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void divide_map(t_fdf_data *data, t_fdf_point **map, double value)
+void	divide_map(t_fdf_data *data, t_fdf_point **map, double value)
 {
 	size_t x;
 	size_t y;
@@ -31,7 +31,7 @@ void divide_map(t_fdf_data *data, t_fdf_point **map, double value)
 	}
 }
 
-void multiply_map(t_fdf_data *data, t_fdf_point **map, double value)
+void	multiply_map(t_fdf_data *data, t_fdf_point **map, double value)
 {
 	size_t x;
 	size_t y;

@@ -6,7 +6,7 @@
 #    By: vtolochk <vtolochk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 18:36:10 by vtolochk          #+#    #+#              #
-#    Updated: 2018/03/14 12:24:12 by vtolochk         ###   ########.fr        #
+#    Updated: 2018/03/16 20:17:18 by vtolochk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ CC = gcc
 
 vpath %.c srcs/
 
-SRCS = get_coords.c img_functions.c initialization.c main.c
+SRCS = divide_and_multiply.c drew_legend.c drew_line.c get_coords.c \
+	   img_functions.c initialization.c keys.c main.c move_map.c \
+	   rotate_coords.c
 
 OBJ = $(SRCS:.c=.o)
 

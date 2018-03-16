@@ -6,13 +6,13 @@
 /*   By: vtolochk <vtolochk@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 15:08:00 by vtolochk          #+#    #+#             */
-/*   Updated: 2018/03/13 19:28:44 by vtolochk         ###   ########.fr       */
+/*   Updated: 2018/03/16 20:29:49 by vtolochk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void put_pixel_on_img(int x, int y, t_fdf_data *data)
+void	put_pixel_on_img(int x, int y, t_fdf_data *data)
 {
 	int i;
 
