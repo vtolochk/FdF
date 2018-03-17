@@ -6,7 +6,7 @@
 /*   By: vtolochk <vtolochk@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 13:57:00 by vtolochk          #+#    #+#             */
-/*   Updated: 2018/03/16 20:26:24 by vtolochk         ###   ########.fr       */
+/*   Updated: 2018/03/17 13:58:39 by vtolochk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static void	get_increment(t_fdf_point frs, t_fdf_point sec, t_fdf_coords *incr)
 		incr->y = -1;
 }
 
-void		draw_line(t_fdf_point frs_pt, t_fdf_point sec_pt, t_fdf_data *d, int error)
+void		draw_line(t_fdf_point frs_pt, t_fdf_point sec_pt, \
+	t_fdf_data *d, int error)
 {
 	int				save_error;
 	t_fdf_coords	increment;

@@ -6,7 +6,7 @@
 #    By: vtolochk <vtolochk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 18:36:10 by vtolochk          #+#    #+#              #
-#    Updated: 2018/03/16 20:17:18 by vtolochk         ###   ########.fr        #
+#    Updated: 2018/03/17 15:13:53 by vtolochk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,7 @@ NAME = fdf
 
 HEADER = includes/fdf.h
 
-LIBFT_NAME = libft.a
-
-LIBFT_DIR = Libft/
+LIBFT = Libft/libft.a
 
 CFLAGS = -Wall -Wextra -Werror -Iincludes
 
@@ -36,16 +34,21 @@ OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(HEADER) $(OBJ) 
-	make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $(HEADER_FLAGS) $(LIBFT_DIR)$(LIBFT_NAME) $(OBJ) -o $(NAME)
+%.o: %.c $(HEADER)
+	$(CC) $(CFLAGS) -c -o $@ $< 
+
+$(NAME): $(LIBFT) $(OBJ)
+	$(CC) $(CFLAGS) $(HEADER_FLAGS) $(LIBFT) $(OBJ) -o $(NAME)
+
+$(LIBFT):
+	make -C Libft/
 
 clean:
 	rm -f $(OBJ)
-	make clean -C $(LIBFT_DIR)
+	make clean -C Libft/
 
 fclean: clean
 	rm -f $(NAME)
-	make fclean -C $(LIBFT_DIR)
+	make fclean -C Libft/
 
 re: fclean all
