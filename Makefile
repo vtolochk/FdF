@@ -6,7 +6,7 @@
 #    By: vtolochk <vtolochk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/13 18:36:10 by vtolochk          #+#    #+#              #
-#    Updated: 2018/03/17 15:13:53 by vtolochk         ###   ########.fr        #
+#    Updated: 2018/03/21 13:27:37 by vtolochk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT = Libft/libft.a
 
 CFLAGS = -Wall -Wextra -Werror -Iincludes
 
-HEADER_FLAGS = -lmlx -framework OpenGL -framework AppKit
+HEADER_FLAGS = -L ./minilibx -lmlx -framework OpenGL -framework AppKit
 
 CC = gcc
 
